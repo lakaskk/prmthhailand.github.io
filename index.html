@@ -97,38 +97,51 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        var calendarEl = document.getElementById("calendar");
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: "dayGridMonth",
-          events: [
-            {
-              title: "Meeting",
-              start: "2025-01-16",
-              description: "Project meeting at 10:00 AM",
-            },
-            {
-              title: "Workshop",
-              start: "2025-01-18",
-              description: "Web Development Workshop",
-            },
-            {
-              title: "Deadline",
-              start: "2025-01-20",
-              description: "Submit project proposal",
-            },
-          ],
-          eventClick: function (info) {
-            alert(
-              "Event: " +
-                info.event.title +
-                "\nDescription: " +
-                info.event.extendedProps.description
-            );
-          },
-        });
-        calendar.render();
-      });
+      document.addEventListener('DOMContentLoaded', function () {
+          // Predefined events
+          const events = [
+              {
+                  title: 'Meeting',
+                  date: '2025-01-16',
+                  description: 'Project meeting at 10:00 AM'
+              },
+              {
+                  title: 'Workshop',
+                  date: '2025-01-18',
+                  description: 'Web Development Workshop at 2:00 PM'
+              },
+              {
+                  title: 'Deadline',
+                  date: '2025-01-20',
+                  description: 'Submit project proposal before 5:00 PM'
+              }
+          ];
+
+          // Initialize Calendar
+          var calendarEl = document.getElementById('calendar');
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+              initialView: 'dayGridMonth',
+              events: events.map(event => ({
+                  title: event.title,
+                  start: event.date
+              })),
+              dateClick: function (info) {
+                  highlightEvent(info.dateStr);
+              }
+          });
+          calendar.render();
+
+          // Populate Event Details
+          const eventListContainer = document.querySelector('.event-list');
+          events.forEach(event => {
+              const eventItem = document.createElement('div');
+              eventItem.classList.add('event-item');
+              eventItem.innerHTML = `
+                  <h5>${event.title} (${event.date})</h5>
+                  <p>${event.description}</p>
+              `;
+              eventListContainer.appendChild(eventItem);
+      })});
     </script>
   </body>
 </html>
