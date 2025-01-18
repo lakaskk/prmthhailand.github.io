@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 @import url("https://fonts.googleapis.com/css2?family=Kanit&family=Mitr:wght@200;300;400;500;600;700&display=swap");
 
-body {
+* {
   font-family: "Mitr", serif;
   font-weight: 400;
   font-style: normal;
@@ -146,4 +146,18 @@ footer div {
 
 section{
   text-align: center;
+}
+
+.menu{
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.menu li{
+  list-style-type: none;
+}
+.menu li a{
+  background-color: green;
+  display: block;
+  text-decoration: none;
 }
